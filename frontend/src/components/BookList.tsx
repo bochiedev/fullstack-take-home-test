@@ -1,33 +1,27 @@
+// BookList.tsx
 import React from 'react';
-import { List, ListItem, ListItemText, ListItemSecondaryAction, Button } from '@mui/material';
-
-interface Book {
-  author: string;
-  coverPhotoURL: string;
-  readingLevel: string;
-  title: string;
-}
+import { Grid } from '@mui/material';
+import Book from './Book';
 
 interface BookListProps {
-  books: Book[];
-  onAdd: (book: Book) => void;
+  books: {
+    author: string;
+    coverPhotoURL: string;
+    readingLevel: string;
+    title: string;
+  }[];
+  onAdd: (book: any) => void;
 }
 
 const BookList: React.FC<BookListProps> = ({ books, onAdd }) => {
   return (
-    <List>
+    <Grid container spacing={3} sx={{ marginTop: '20px' }}>
       {books.map((book) => (
-        <ListItem key={book.title}>
-          <img src={book.coverPhotoURL} alt={book.title} width={50} height={50} />
-          <ListItemText primary={book.title} secondary={book.author} />
-          <ListItemSecondaryAction>
-            <Button variant="contained" color="primary" onClick={() => onAdd(book)}>
-              Add to Reading List
-            </Button>
-          </ListItemSecondaryAction>
-        </ListItem>
+        <Grid item key={book.title} xs={12} sm={6} md={3} lg={3} xl={3}>
+          <Book book={book} onAdd={onAdd} />
+        </Grid>
       ))}
-    </List>
+    </Grid>
   );
 };
 

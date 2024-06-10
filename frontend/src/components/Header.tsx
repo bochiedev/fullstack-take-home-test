@@ -1,4 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 186 126" width="186" height="126" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px); content-visibility: visible;">
+import React, { useState } from 'react';
+import { AppBar, Toolbar, Typography } from '@mui/material';
+
+const Header: React.FC = () => {
+    const [activeItem, setActiveItem] = useState<string | null>(null);
+
+    const handleItemClick = (itemName: string) => {
+        setActiveItem(itemName);
+    };
+
+    const logoSVG = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 186 126" width="186" height="126" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px); content-visibility: visible;">
     <defs><clipPath id="__lottie_element_11"><rect width="186" height="126" x="0" y="0"></rect></clipPath></defs>
     <g clip-path="url(#__lottie_element_11)">
     <g transform="matrix(0.6000000238418579,0,0,0.6000000238418579,-0.30000370740890503,-2.699997901916504)" opacity="1" style="display: block;">
@@ -38,3 +48,15 @@
     </g>
     </g>
     </svg>
+    `;
+
+    return (
+        <AppBar position="static" style={{ backgroundColor: 'white' }}>
+            <Toolbar style={{ justifyContent: 'space-between' }}>
+                <div dangerouslySetInnerHTML={{ __html: logoSVG }} style={{ height: '40px', marginRight: '8px' }} />
+            </Toolbar>
+        </AppBar>
+    );
+}
+
+export default Header;
